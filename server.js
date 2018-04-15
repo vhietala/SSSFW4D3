@@ -7,7 +7,7 @@ const io = require('socket.io')(http);
 app.use(express.static('public'));
 
 const users = [];
-io.on('connection', function(socket) {
+io.on('connection', (socket) => {
   console.log('A user connected');
   socket.on('setUsername', (data) => {
     if (users.indexOf(data) > -1) {
@@ -25,6 +25,6 @@ io.on('connection', function(socket) {
   })
 });
 
-http.listen(3000, function() {
+http.listen(3000, () => {
   console.log('listening on localhost:3000');
 });
