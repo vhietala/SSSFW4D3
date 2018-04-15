@@ -27,10 +27,10 @@ socket.on('connect', () => {
   socket.emit('room', room);
 });
 
-socket.on('newmsg', (data) => {
+socket.on('newmsg', (username,data) => {
   if (user.value) {
     document.getElementById('message-container').innerHTML += '<div><b>' +
-        data.user + '</b>: ' + data.message + '</div>';
+        username + '</b>: ' + data + '</div>';
   }
 });
 
