@@ -6,10 +6,10 @@ const io = require('socket.io')(http);
 
 app.use(express.static('public'));
 
-let users = [];
+const users = [];
 io.on('connection', function(socket) {
   console.log('A user connected');
-  socket.on('setUsername', function(data) {
+  socket.on('setUsername', (data) => {
     if (users.indexOf(data) > -1) {
       users.push(data);
       socket.emit('userSet', {username: data});
@@ -19,7 +19,7 @@ io.on('connection', function(socket) {
     }
   });
 
-  socket.on('msg', function(data) {
+  socket.on('msg', (data) => {
     //Send message to everyone
     io.sockets.emit('newmsg', data);
   })
