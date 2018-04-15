@@ -1,10 +1,16 @@
 'use strict';
-const socket = io();
+const socket = io.connect('/');
 
 const user = document.getElementById('user');
 const msg = document.getElementById('input');
 
 const username = user.value;
+
+const room = 'room1';
+
+const setRoom = (newRoom) => {
+  this.room = newRoom;
+};
 
 const setUsername = () => {
   socket.emit('setUsername', user.value);
@@ -17,9 +23,17 @@ const sendMessage = () => {
   }
 };
 
+socket.on('connect', () => {
+  socket.emit('room', room);
+});
+
 socket.on('newmsg', (data) => {
   if (user.value) {
     document.getElementById('message-container').innerHTML += '<div><b>' +
         data.user + '</b>: ' + data.message + '</div>';
   }
 });
+
+const switchRoom = (room) => {
+  socket.emit('switchRoom', room);
+};

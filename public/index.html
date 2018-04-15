@@ -7,7 +7,11 @@
 <script src="/socket.io/socket.io.js"></script>
 
 <body>
-<div id="room-container"></div>
+<div id="room-container">
+    <button onclick="switchRoom('room1')">room1</button>
+    <button onclick="switchRoom('room2')">room2</button>
+    <button onclick="switchRoom('room3')">room3</button>
+</div>
 <br>
 <input id="user" type="text" name="user" value="" placeholder="Enter your name!">
 <button type="button" name="userButton" onclick="setUsername()">set username</button>
